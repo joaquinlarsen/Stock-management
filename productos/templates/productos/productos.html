@@ -1,0 +1,56 @@
+{%  extends 'productos/main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+		<div class="row mt-3">
+			<div class="col-md">
+				<div class="card card-body">
+					<h5>Productos</h5>
+				</div>
+				<div class="card card-body">
+					<a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_order' %}">Agregar Producto</a>
+				</div>
+				<br>
+			<div class="row">
+				<div class="col">
+					<div class="card card-body">
+						<form method="get">
+							{{myFilter.form|crispy}}
+						<button class="btn btn-primary" type="submit">Search</button>
+						<a class="btn btn-info ml-3" href="/">Reset</a>
+					</form>
+					</div>
+				</div>
+			</div>
+			<br>
+				<div class="card card-body">
+					<table class="table">
+						<tr>
+							<th>Nombre</th>
+							<th>Presentacion</th>
+							<th>Tipo de Bebida</th>
+							<th>Precio</th>
+							<th>Cantidad en stock</th>
+							<th>Actualizar</th>
+							<th>Eliminar</th>
+						</tr>
+						{% for i in productos %}
+							<tr>
+								<td>{{i.nombre}}</td>
+								<td>{{i.presentacion}}</td>
+								<td>{{i.tipo_bebida}}</td>
+								<td>{{i.precio}}</td>
+								<td>{{i.cantidad_stock}}</td>
+								<td><a class="btn btn-sm btn-info" href="{% url 'update_order' i.id_interno %}">Actualizar</td>
+								<td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' i.id_interno %}">Eliminar</td>
+							</tr>
+						{% endfor %}
+						
+					</table>
+				</div>
+			</div>
+			
+		</div>
+
+{% endblock content %}

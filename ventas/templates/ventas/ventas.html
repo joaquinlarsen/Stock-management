@@ -1,0 +1,37 @@
+{%  extends 'productos/main.html' %}
+
+{% block content %}
+
+<div class="row mt-3">
+    <div class="col-md">    
+        <div class="card card-body">
+            <h5>Ventas</h5>
+        </div>
+        <div class="card card-body">
+            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'create_venta' %}">Agregar Venta</a>
+        </div>
+        <div class="card card-body">
+            <table class="table">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Presentacion</th>
+                    <th>Cantidad Vendida</th>
+                    <th>Precio Total</th>
+                    <th>Nota</th>
+                    <th>Fecha</th>
+                </tr>
+                {% for v in ventas %}
+                    <tr>
+                        <td>{{v.producto.nombre}}</td>
+                        <td>{{v.producto.presentacion}}</td>
+                        <td>{{v.cantidad_vendida}}</td>
+                        <td>{{v.precio_total}}</td>
+                        <td>{{v.nota}}</td>
+                        <td>{{v.fecha}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
